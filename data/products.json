@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Fancy Vase",
+    "price": 400,
+    "dimensions": "30 cm high, 30 cm wide",
+    "designer": "John Doe",
+    "Category": "Vases"
+  },
+  {
+    "name": "Gorgeus Coffe cup",
+    "price": 300,
+    "dimensions": "10 cm high, 10 cm wide",
+    "designer": "Name Nameson",
+    "Category": "Cups"
+  }
+]

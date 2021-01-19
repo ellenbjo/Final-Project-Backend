@@ -6,6 +6,9 @@ import crypto from 'crypto'
 import bcrypt from 'bcrypt'
 import listEndpoints from 'express-list-endpoints'
 
+import productsData from './data/products.json'
+import designersData from './data/designers.json'
+
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalproject"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
@@ -72,6 +75,21 @@ userSchema.pre('save', async function(next){
 
 const User = mongoose.model('User', userSchema)
 
+const Product = new mongoose.model('Product', {
+  name: String,
+  price: Number,
+  dimensions: String,
+  designer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Designer'
+  },
+  Category: String
+})
+
+const Designer = new mongoose.model('Designer', {
+  name: String,
+})
+
 const authenticateUser = async (req, res, next) => {
   try {
     const accessToken = req.header('Authorization')
@@ -90,6 +108,31 @@ const authenticateUser = async (req, res, next) => {
 // Add middlewares to enable cors and json body parsing
 app.use(cors())
 app.use(bodyParser.json())
+
+if (process.env.RESET_DATABASE) {
+  const populateDatabase = async () => {
+    await Product.deleteMany()
+    await Designer.deleteMany()
+
+    let designers = []
+
+    designersData.forEach( async item => {
+      const newDesigner = new Designer(item)
+      
+      designers.push(newDesigner)
+      await newDesigner.save()
+    })
+
+    productsData.forEach( async productItem => {
+      const newProduct = new Product({
+        ...productItem,
+        designer: designers.find(designer => designer.name === productItem.designer)
+      })
+      await newProduct.save()
+    })
+  }
+  populateDatabase()
+}
 
 // Listing all endpoints
 app.get('/', (req, res) => {
@@ -136,7 +179,7 @@ app.post('/sessions', async (req, res) => {
 })
 
 app.get('/users/:id/profile', authenticateUser)
-app.get('users/:id/profile', async (req, res) => {
+app.get('/users/:id/profile', async (req, res) => {
   const testMessage = `${req.user.name}`
   res.status(200).json({testMessage})
 })
