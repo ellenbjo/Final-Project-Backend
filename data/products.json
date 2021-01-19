@@ -12,5 +12,12 @@
     "dimensions": "10 cm high, 10 cm wide",
     "designer": "Name Nameson",
     "Category": "Cups"
+  },
+  {
+    "name": "Funny Vase",
+    "price": 500,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "John Doe",
+    "Category": "Vases"
   }
 ]
