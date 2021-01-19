@@ -139,6 +139,7 @@ app.get('/', (req, res) => {
   res.send(listEndpoints(app))
 })
 
+//------------- Authentication ---------------
 //signup for new user
 app.post('/users', async (req, res) => {
   try {
@@ -188,3 +189,60 @@ app.get('/users/:id/profile', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
 })
+
+//------------- Products ---------------
+//all products
+app.get('/products', async (req, res) => {
+  const allProducts = await Product.find()
+  res.status(200).json(allProducts)
+})
+
+//single product for pdp
+app.get('/products/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const singleProduct = await Product.findOne({ _id: id})
+    if (singleProduct) {
+      res.status(200).json(singleProduct)
+    } else {
+      res.status(400).json({ error: 'No such product found'})
+    }
+  } catch {
+    res.status(400).json({ error: 'Not a valid id. Please try again'})
+  }
+})
+
+//------------- Designers --------------
+//all designers
+app.get('/designers', async (req, res) => {
+  const allDesigners = await Designer.find()
+  res.status(200).json(allDesigners)
+})
+
+//single deisgner. not sure if this is needed in frontend
+app.get('/designers/:id', async (req, res) => {
+  const { id } = req.params
+  const designer = await Designer.findOne({ _id: id})
+
+  if (designer) {
+    res.json(designer)
+  } else {
+    res.status(400).json({ error: 'Designer could not be found'})
+  }
+})
+
+//all products from one designer
+app.get('/designers/:id/products', async (req, res) => {
+
+    const designer = await Designer.findById(req.params.id)
+    console.log(designer)
+    if (designer) {
+      const products = await Product.find({
+        designer: mongoose.Types.ObjectId(designer.id)
+      })
+      res.json(products)
+    } else {
+      res.status(400).json({ error: 'products from designer could not be found'})
+    }
+})
+
