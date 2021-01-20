@@ -4,20 +4,23 @@
     "price": 400,
     "dimensions": "30 cm high, 30 cm wide",
     "designer": "John Doe",
-    "Category": "Vases"
+    "category": "Vases",
+    "imageUrl" : "https://res.cloudinary.com/dztqyanvb/image/upload/v1611130691/products/pexels-karolina-grabowska-4207791_pewjta.jpg"
   },
   {
-    "name": "Gorgeus Coffe cup",
+    "name": "Gorgeous Coffe cup",
     "price": 300,
     "dimensions": "10 cm high, 10 cm wide",
     "designer": "Name Nameson",
-    "Category": "Cups"
+    "category": "Cups",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611130620/products/pexels-karolina-grabowska-4207789_jhhury.jpg"
   },
   {
     "name": "Funny Vase",
     "price": 500,
     "dimensions": "32 cm high, 20 cm wide",
     "designer": "John Doe",
-    "Category": "Vases"
+    "category": "Vases",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611130423/products/pexels-karolina-grabowska-4207475_i14x7f.jpg"
   }
 ]

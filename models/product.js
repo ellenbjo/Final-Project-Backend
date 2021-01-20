@@ -7,9 +7,11 @@ const Product = new mongoose.model('Product', {
   price: Number,
   dimensions: String,
   designer: {
-    type: mongoose.Schema.Types.ObjectId
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Designer'
   },
-  Category: String
+  category: String,
+  imageUrl: String
 })
 
 export default Product

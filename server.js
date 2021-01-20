@@ -5,9 +5,38 @@ import mongoose from 'mongoose'
 import crypto from 'crypto'
 import bcrypt from 'bcrypt'
 import listEndpoints from 'express-list-endpoints'
+/*import dotenv from 'dotenv'
+import cloudinaryFramework from 'cloudinary'
+import multer from 'multer'
+import cloudinaryStorage from 'multer-storage-cloudinary' */
 
 import productsData from './data/products.json'
 import designersData from './data/designers.json'
+import Product from './models/product'
+import Designer from './models/designer'
+
+//----- setting up cloudinary ------------------
+/*
+const cloudinary = cloudinaryFramework.v2; 
+cloudinary.config({
+  cloud_name: 'dztqyanvb', 
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
+dotenv.config()
+
+const storage = cloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'products',
+    allowedFormats: ['jpg', 'png'],
+    transformation: [{ width: 900, height:900, crop: 'limit' }],
+  },
+})
+
+const parser = multer({ storage })
+*/
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalproject"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -22,7 +51,7 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    minlength: [2, 'Name is too short']
+    minlength: [2, 'Name has to be at least 2 characters long']
   },
   email: {
     type: String,
@@ -75,19 +104,13 @@ userSchema.pre('save', async function(next){
 
 const User = mongoose.model('User', userSchema)
 
-const Product = new mongoose.model('Product', {
-  name: String,
-  price: Number,
-  dimensions: String,
-  designer: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Designer'
-  },
-  Category: String
-})
-
-const Designer = new mongoose.model('Designer', {
-  name: String,
+const Order = new mongoose.model('Order', {
+  items: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Product'
+    }
+  ]
 })
 
 const authenticateUser = async (req, res, next) => {
@@ -167,6 +190,7 @@ app.post('/users', async (req, res) => {
   }
 })
 
+//signin for existing user
 app.post('/sessions', async (req, res) => {
   try {
     const { email, password } = req.body
@@ -179,6 +203,7 @@ app.post('/sessions', async (req, res) => {
   }
 })
 
+//profile
 app.get('/users/:id/profile', authenticateUser)
 app.get('/users/:id/profile', async (req, res) => {
   const testMessage = `${req.user.name}`
@@ -246,3 +271,18 @@ app.get('/designers/:id/products', async (req, res) => {
     }
 })
 
+// POST--> Add Item/Product to cart
+//What info should I send? Should it be connected with the product model in some way?
+
+//POST--> Add Product to favourite list
+
+app.post('users/:id/favourites', authenticateUser)
+app.post('/users/:id/favourites', async (req, res) => {
+  try {
+    const { name, price, designer, imageUrl} = req.body
+    const product = await Product.findOne({name})
+
+  } catch (error) {
+
+  }
+})
