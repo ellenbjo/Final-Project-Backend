@@ -5,22 +5,118 @@
     "dimensions": "30 cm high, 30 cm wide",
     "designer": "John Doe",
     "category": "Vases",
-    "imageUrl" : "https://res.cloudinary.com/dztqyanvb/image/upload/v1611130691/products/pexels-karolina-grabowska-4207791_pewjta.jpg"
+    "imageUrl" : "https://res.cloudinary.com/dztqyanvb/image/upload/v1611154363/products/pexels-karolina-grabowska-4207892_egugsu.jpg"
   },
   {
     "name": "Gorgeous Coffe cup",
     "price": 300,
     "dimensions": "10 cm high, 10 cm wide",
-    "designer": "Name Nameson",
+    "designer": "Nelle Namkröjb",
     "category": "Cups",
-    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611130620/products/pexels-karolina-grabowska-4207789_jhhury.jpg"
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611154464/products/pexels-karolina-grabowska-4466255_onjtzb.jpg"
   },
   {
-    "name": "Funny Vase",
+    "name": "Marble Book Stand",
+    "price": 1000,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "John Doe",
+    "category": "Other",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611154077/products/pexels-karolina-grabowska-4207789_1_zplu1p.jpg"
+  },
+  {
+    "name": "Straight cup",
+    "price": 200,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "John Doe",
+    "category": "Cups",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611154940/products/pexels-karolina-grabowska-4202917_op5yne.jpg"
+  },
+  {
+    "name": "Set of Elegant Cups",
     "price": 500,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "Jane Doe",
+    "category": "Cups",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611155183/products/pexels-nastyasensei-2575830_bucttb.jpg"
+  },
+  {
+    "name": "Elegant Plate",
+    "price": 300,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "Jane Doe",
+    "category": "Plates",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611155447/products/pexels-nadi-lindsay-5313676_ljznyt.jpg"
+  },
+  {
+    "name": "Arty Vase",
+    "price": 800,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "Name Nameson",
+    "category": "Vases",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611155887/products/pexels-cottonbro-4277097_wig5hy.jpg"
+  },
+  {
+    "name": "Pretty Vase",
+    "price": 450,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "Nelle Namkröjb",
+    "category": "Vases",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611155609/products/pexels-karolina-grabowska-4207475_1_pdtmw1.jpg"
+  },
+  {
+    "name": "Dark Vase",
+    "price": 470,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "Name Nameson",
+    "category": "Vases",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611218387/products/pexels-cottonbro-4277099_vbxbbe.jpg"
+  },
+  {
+  "name": "Sleek Vase",
+  "price": 600,
+  "dimensions": "32 cm high, 20 cm wide",
+  "designer": "Jane Doe",
+  "category": "Vases",
+  "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611219363/products/pexels-cottonbro-4273435_fng35e.jpg"
+  },
+  {
+    "name": "Set of Friendly Vases",
+    "price": 1200,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "Jane Doe",
+    "category": "Vases",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611220007/products/pexels-charlotte-may-5825578_cuxvuf.jpg"
+  },
+  {
+    "name": "Parrot Statuette",
+    "price": 1100,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "John Doe",
+    "category": "Other",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611220390/products/pexels-karolina-grabowska-4207782_aawhmz.jpg"
+  },
+  {
+    "name": "Cute Bathroom Set",
+    "price": 300,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "John Doe",
+    "category": "Sets",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611220504/products/pexels-karolina-grabowska-4202328_ortxsa.jpg"
+  },
+  {
+    "name": "Modern Vase",
+    "price": 300,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "Designer Name",
+    "category": "Vases",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611222175/products/pexels-gabby-k-5273720_ozbtua.jpg"
+  }, 
+  {
+    "name": "Quirky Vase",
+    "price": 450,
     "dimensions": "32 cm high, 20 cm wide",
     "designer": "John Doe",
     "category": "Vases",
-    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611130423/products/pexels-karolina-grabowska-4207475_i14x7f.jpg"
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611223065/products/pexels-karolina-grabowska-4207791_1_pzwrjk.jpg"
   }
 ]

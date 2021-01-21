@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+/*import mongoose from 'mongoose'
 
 const Order = new mongoose.model('Order', {
   items: [
@@ -37,7 +37,7 @@ export default CartItem
   products: []
 })*/
 
-const Order = new mongoose.model('Order', {
+/*const Order = new mongoose.model('Order', {
   products: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -47,4 +47,6 @@ const Order = new mongoose.model('Order', {
   quantity: Number,
   totalPrice: Number
 })
+
+*/
  
