@@ -14,6 +14,7 @@ import productsData from './data/products.json'
 import designersData from './data/designers.json'
 import Product from './models/product'
 import Designer from './models/designer'
+import Order from './models/order'
 
 //----- setting up cloudinary ------------------
 /*
@@ -103,15 +104,6 @@ userSchema.pre('save', async function(next){
 })
 
 const User = mongoose.model('User', userSchema)
-
-const Order = new mongoose.model('Order', {
-  items: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Product'
-    }
-  ]
-})
 
 const authenticateUser = async (req, res, next) => {
   try {
@@ -274,9 +266,18 @@ app.get('/designers/:id/products', async (req, res) => {
 // POST--> Add Item/Product to cart
 //What info should I send? Should it be connected with the product model in some way?
 
+app.post('/orders', async (req, res) => {
+  try {
+    const order = await new Order(req.body).save()
+    res.status(200).json(order)
+  } catch (error) {
+    res.status(400).json({ error: 'Could not save order. Please try again'})
+  }
+})
+
 //POST--> Add Product to favourite list
 
-app.post('users/:id/favourites', authenticateUser)
+/*app.post('users/:id/favourites', authenticateUser)
 app.post('/users/:id/favourites', async (req, res) => {
   try {
     const { name, price, designer, imageUrl} = req.body
@@ -285,4 +286,4 @@ app.post('/users/:id/favourites', async (req, res) => {
   } catch (error) {
 
   }
-})
+})*/
