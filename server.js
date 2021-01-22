@@ -5,10 +5,6 @@ import mongoose from 'mongoose'
 import crypto from 'crypto'
 import bcrypt from 'bcrypt'
 import listEndpoints from 'express-list-endpoints'
-/*import dotenv from 'dotenv'
-import cloudinaryFramework from 'cloudinary'
-import multer from 'multer'
-import cloudinaryStorage from 'multer-storage-cloudinary' */
 
 import productsData from './data/products.json'
 import designersData from './data/designers.json'
@@ -16,28 +12,6 @@ import Product from './models/product'
 import Designer from './models/designer'
 import Order from './models/order'
 
-//----- setting up cloudinary ------------------
-/*
-const cloudinary = cloudinaryFramework.v2; 
-cloudinary.config({
-  cloud_name: 'dztqyanvb', 
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-})
-
-dotenv.config()
-
-const storage = cloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: 'products',
-    allowedFormats: ['jpg', 'png'],
-    transformation: [{ width: 900, height:900, crop: 'limit' }],
-  },
-})
-
-const parser = multer({ storage })
-*/
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalproject"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
