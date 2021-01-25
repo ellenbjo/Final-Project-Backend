@@ -149,7 +149,7 @@ app.post('/users', async (req, res) => {
       city,
       phoneNumber
     }).save()
-    res.status(200).json({ userId: user._id, accesToken: user.accessToken})
+    res.status(200).json(user)
   } catch (error) {
     res.status(400).json({ message: 'Could not sign up user. Please try again.', errors: error})
   }
