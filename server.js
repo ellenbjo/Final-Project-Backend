@@ -164,15 +164,14 @@ app.post('/sessions', async (req, res) => {
       res.status(200).json(user)
     }
   } catch (error) {
-    res.status(400).json({ erro: 'Login Failed. Please try again'})
+    res.status(400).json({ error: 'Login Failed. Please try again'})
   }
 })
 
 //profile
 app.get('/users/:id/profile', authenticateUser)
 app.get('/users/:id/profile', async (req, res) => {
-  const testMessage = `${req.user.name}`
-  res.status(200).json({testMessage})
+  res.status(200).json(user)
 })
 
 
