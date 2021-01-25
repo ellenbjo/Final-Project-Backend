@@ -12,7 +12,6 @@ import Product from './models/product'
 import Designer from './models/designer'
 import Order from './models/order'
 
-
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalproject"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
@@ -43,7 +42,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   postalCode: {
-    type: Number,
+    type: String,
     required: true
   },
   city: {
@@ -51,7 +50,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   phoneNumber: {
-    type: Number,
+    type: String,
     required: true
   },
   accessToken: {
@@ -162,7 +161,7 @@ app.post('/sessions', async (req, res) => {
     const { email, password } = req.body
     const user = await User.findOne({ email })
     if (user && bcrypt.compareSync(password, user.password)) {
-      res.status(200).json({ userId: user._id, accessToken: user.accesToken})
+      res.status(200).json(user)
     }
   } catch (error) {
     res.status(400).json({ erro: 'Login Failed. Please try again'})
@@ -176,10 +175,6 @@ app.get('/users/:id/profile', async (req, res) => {
   res.status(200).json({testMessage})
 })
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`)
-})
 
 //------------- Products ---------------
 //all products
@@ -224,7 +219,6 @@ app.get('/designers/:id', async (req, res) => {
 
 //all products from one designer
 app.get('/designers/:id/products', async (req, res) => {
-
     const designer = await Designer.findById(req.params.id)
     console.log(designer)
     if (designer) {
@@ -233,7 +227,7 @@ app.get('/designers/:id/products', async (req, res) => {
       })
       res.json(products)
     } else {
-      res.status(400).json({ error: 'products from designer could not be found'})
+      res.status(400).json({ error: 'Products from designer could not be found'})
     }
 })
 
@@ -261,3 +255,9 @@ app.post('/users/:id/favourites', async (req, res) => {
 
   }
 })*/
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`)
+})
+

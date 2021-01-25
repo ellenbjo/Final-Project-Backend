@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 
-
 const Order = new mongoose.model('Order', {
   products: [
     {
