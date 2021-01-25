@@ -169,8 +169,8 @@ app.post('/sessions', async (req, res) => {
 })
 
 //profile
-app.get('/users/:id/profile', authenticateUser)
-app.get('/users/:id/profile', async (req, res) => {
+app.get('/users/profile', authenticateUser)
+app.get('/users/profile', async (req, res) => {
   res.status(200).json(user)
 })
 
