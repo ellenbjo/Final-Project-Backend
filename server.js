@@ -233,6 +233,7 @@ app.get('/designers/:id/products', async (req, res) => {
 // POST--> Add Item/Product to cart
 //What info should I send? Should it be connected with the product model in some way?
 
+app.post('/orders', authenticateUser)
 app.post('/orders', async (req, res) => {
   try {
     const order = await new Order(req.body).save()
