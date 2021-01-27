@@ -241,7 +241,7 @@ app.get('/designers/:id/products', async (req, res) => {
 
 app.post('/orders', authenticateUser)
 app.post('/orders', async (req, res) => {
-  const { productId, userId, quantity } = req.body
+  const { products, userId } = req.body
   try {
     const order = await new Order({
       products,
