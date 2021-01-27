@@ -244,6 +244,7 @@ app.post('/orders', async (req, res) => {
   const { productId, userId, quantity } = req.body
   try {
     const order = await new Order({
+      products,
       productId,
       userId,
       quantity
