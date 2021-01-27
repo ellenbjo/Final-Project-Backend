@@ -7,7 +7,15 @@ const Order = new mongoose.model('Order', {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'
       },
-      quantity: Number
+      userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now
+      },
+      quantity: Number,
     }
   ],
 })

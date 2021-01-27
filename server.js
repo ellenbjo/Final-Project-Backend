@@ -53,6 +53,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  orders: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'order'
+    }
+  ],
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex'),
@@ -235,8 +241,13 @@ app.get('/designers/:id/products', async (req, res) => {
 
 app.post('/orders', authenticateUser)
 app.post('/orders', async (req, res) => {
+  const { productId, userId, quantity } = req.body
   try {
-    const order = await new Order(req.body).save()
+    const order = await new Order({
+      productId,
+      userId,
+      quantity
+    }).save()
     res.status(200).json(order)
   } catch (error) {
     res.status(400).json({ error: 'Could not save order. Please try again'})
