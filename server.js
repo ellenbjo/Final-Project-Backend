@@ -155,7 +155,7 @@ app.post('/users', async (req, res) => {
   }
 })
 
-//signin for existing user
+//sign in for existing user
 app.post('/sessions', async (req, res) => {
   try {
     const { email, password } = req.body
@@ -170,8 +170,8 @@ app.post('/sessions', async (req, res) => {
 
 //profile
 app.get('/users/profile', authenticateUser)
-app.get('/users/profile', async (req, res) => {
-  res.status(200).json(user)
+app.get('/users/profile', (req, res) => {
+  res.status(200).json(req.user)
 })
 
 
