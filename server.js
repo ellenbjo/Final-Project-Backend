@@ -245,9 +245,7 @@ app.post('/orders', async (req, res) => {
   try {
     const order = await new Order({
       products,
-      productId,
       userId,
-      quantity
     }).save()
     res.status(200).json(order)
   } catch (error) {
