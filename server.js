@@ -94,7 +94,7 @@ const authenticateUser = async (req, res, next) => {
     req.user = user
     next()
   } catch (error) {
-    const errorMessage = 'Try to login again'
+    const errorMessage = 'You have to login to access this page.'
     res.status(401).json({ error: errorMessage})
   }
 }
@@ -175,9 +175,12 @@ app.post('/sessions', async (req, res) => {
 })
 
 //profile
-app.get('/users/profile', authenticateUser)
-app.get('/users/profile', (req, res) => {
-  res.status(200).json(req.user)
+app.get('/users/orders', authenticateUser)
+app.get('/users/orders', async (req, res) => {
+  const userOrders = await Order.find({ 
+    userId: req.user._id
+  })
+  res.status(200).json(userOrders)
 })
 
 
