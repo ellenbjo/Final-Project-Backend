@@ -24,34 +24,34 @@ const app = express()
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, 'Name is required'],
     minlength: [2, 'Name has to be at least 2 characters long']
   },
   email: {
     type: String,
-    unique: true,
-    required: true
+    unique: [true, 'This email is already registered. Please sign up with another address.'],
+    required: [true, 'Email is required']
   },
   password: {
     type: String,
     required: true,
-    minlength: 4
+    minlength: [4, 'Password is too short.'],
+    maxlength: [12, 'Password is too long.']
   },
   street: {
     type: String,
-    required: true
+    required: [true, 'Street is required']
   },
   postalCode: {
     type: String,
-    required: true
+    required: [true, 'Postal code is required']
   },
   city: {
     type: String,
-    required: true
+    required: [true, 'city is required']
   },
   phoneNumber: {
     type: String,
-    required: true
   },
   orders: [
     {
@@ -65,6 +65,7 @@ const userSchema = new mongoose.Schema({
     unique: true
   }
 })
+
 
 // mongoose pre-hook executes "this" right before the specified action (param-->save) is executed 
 //week 20 lecture 2, 19 minutes in.
