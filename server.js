@@ -66,7 +66,6 @@ const userSchema = new mongoose.Schema({
   }
 })
 
-
 // mongoose pre-hook executes "this" right before the specified action (param-->save) is executed 
 //week 20 lecture 2, 19 minutes in.
 //salt adds som variation to the hash function, per user 
