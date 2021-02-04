@@ -69,7 +69,7 @@
     "dimensions": "32 cm high, 20 cm wide",
     "designer": "Name Nameson",
     "category": "Vases",
-    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611218387/products/pexels-cottonbro-4277099_vbxbbe.jpg"
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1612447011/products/pexels-cottonbro-4277099_vbxbbe.jpg"
   },
   {
   "name": "Sleek Vase",
@@ -118,5 +118,21 @@
     "designer": "John Doe",
     "category": "Vases",
     "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611223065/products/pexels-karolina-grabowska-4207791_1_pzwrjk.jpg"
+  },
+  {
+    "name": "Clumsy Vase",
+    "price": 700,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "Name Nameson",
+    "category": "Vases",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1612278091/products/pexels-elika-margaretha-4898516_xuavth.jpg"
+  },
+  {
+    "name": "Nature Vase",
+    "price": 800,
+    "dimensions": "32 cm high, 20 cm wide",
+    "designer": "Name Nameson",
+    "category": "Vases",
+    "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1612362416/products/pexels-elika-margaretha-4898515_h2vdsa.jpg"
   }
 ]
