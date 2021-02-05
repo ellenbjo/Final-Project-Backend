@@ -24,34 +24,34 @@ const app = express()
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Name is required'],
-    minlength: [2, 'Name has to be at least 2 characters long']
+    required: true,
+    minlength: 2
   },
   email: {
     type: String,
-    unique: [true, 'This email is already registered. Please sign up with another address.'],
-    required: [true, 'Email is required']
+    unique: true,
+    required: true
   },
   password: {
     type: String,
     required: true,
-    minlength: [4, 'Password is too short.'],
-    maxlength: [12, 'Password is too long.']
+    minlength: 4,
+    maxlength: 12
   },
   street: {
     type: String,
-    required: [true, 'Street is required']
+    required: true
   },
   postalCode: {
     type: String,
-    required: [true, 'Postal code is required']
+    required: true
   },
   city: {
     type: String,
-    required: [true, 'city is required']
+    required: true
   },
   phoneNumber: {
-    type: String,
+    type: String
   },
   orders: [
     {
