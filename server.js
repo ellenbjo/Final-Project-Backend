@@ -294,11 +294,11 @@ app.post('/users/user/favourites', async (req, res) => {
 
 app.delete('/users/user/favourites/:id', authenticateUser)
 app.delete('/users/user/favourites/:id', async (req, res) => {
-  const { product } = req.body
-  const { userId } = req.params
+  const { userId } = req.body
+  const { id } = req.params
   try {
-    const favourite = Favourite.findById(userId)
-    await Favourite.deleteOne({ _id: product._id })
+    const favourite = Favourite.findById(id)
+    await Favourite.deleteOne({ _id: id })
     await User.findOneAndUpdate(
       { _id: userId },
       { $pull: { favourites: favourite._id } }
