@@ -272,8 +272,8 @@ app.post('/users/user/orders', async (req, res) => {
   }
 })
 
-app.post('/users/user/favourites', authenticateUser)
-app.post('/users/user/favourites', async (req, res) => {
+app.patch('/users/user/favourites', authenticateUser)
+app.patch('/users/user/favourites', async (req, res) => {
   const { product, userId } = req.body
   try {
     const favourite = await new Favourite({
@@ -292,8 +292,8 @@ app.post('/users/user/favourites', async (req, res) => {
   }
 })
 
-app.delete('/users/user/favourites/:id', authenticateUser)
-app.delete('/users/user/favourites/:id', async (req, res) => {
+app.patch('/users/user/favourites/:id', authenticateUser)
+app.patch('/users/user/favourites/:id', async (req, res) => {
   const { userId } = req.body
   const { id } = req.params
   try {
@@ -301,7 +301,7 @@ app.delete('/users/user/favourites/:id', async (req, res) => {
     await Favourite.deleteOne({ _id: id })
     await User.findOneAndUpdate(
       { _id: userId },
-      { $pull: { favourites: favourite._id } }
+      { $pull: { favourites: { _id: id } } }
     )
 
     res.status(200).json({ success: true })
