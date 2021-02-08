@@ -262,6 +262,10 @@ app.post('/users/user/orders', async (req, res) => {
       products,
       userId,
     }).save()
+    await User.findOneAndUpdate(
+      { _id: userId },
+      { $push: { orders: order._id } }
+    )
     res.status(200).json(order)
   } catch (error) {
     res.status(400).json({ error: 'Could not save order. Please try again'})
@@ -276,6 +280,11 @@ app.post('/users/user/favourites', async (req, res) => {
       product,
       userId,
     }).save()
+
+    await User.findOneAndUpdate(
+      { _id: userId },
+      { $push: { favourites: favourite._id } }
+    )
     res.status(200).json(favourite)
   } catch (error) {
     res.status(400).json({ error: 'Could not save favourite. Please try again'})
