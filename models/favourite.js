@@ -5,15 +5,13 @@ const Favourite = new mongoose.model('Favourite', {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
-  products: [
-    {
-      productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
-      },
-      imageUrl: String,
-    }
-  ],
+  product: {
+    productId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Product'
+    },
+    imageUrl: String,
+  },
 })
 
 export default Favourite

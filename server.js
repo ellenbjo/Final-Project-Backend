@@ -177,16 +177,16 @@ app.post('/sessions', async (req, res) => {
 })
 
 //profile
-app.get('/users/orders', authenticateUser)
-app.get('/users/orders', async (req, res) => {
+app.get('/users/user/orders', authenticateUser)
+app.get('/users/user/orders', async (req, res) => {
   const userOrders = await Order.find({ 
     userId: req.user._id
   })
   res.status(200).json(userOrders)
 })
 
-app.get('/users/favourites', authenticateUser)
-app.get('/users/favourites', async (req, res) => {
+app.get('/users/user/favourites', authenticateUser)
+app.get('/users/user/favourites', async (req, res) => {
   const userFavourites = await Favourite.find({ 
     userId: req.user._id
   })
@@ -249,8 +249,8 @@ app.get('/designers/:id/products', async (req, res) => {
 })
 
 
-app.post('/orders', authenticateUser)
-app.post('/orders', async (req, res) => {
+app.post('/users/user/orders', authenticateUser)
+app.post('/users/user/orders', async (req, res) => {
   const { products, userId } = req.body
   try {
     const order = await new Order({
@@ -263,12 +263,12 @@ app.post('/orders', async (req, res) => {
   }
 })
 
-app.post('/favourites', authenticateUser)
-app.post('/favourites', async (req, res) => {
-  const { products, userId } = req.body
+app.post('/users/user/favourites', authenticateUser)
+app.post('/users/user/favourites', async (req, res) => {
+  const { product, userId } = req.body
   try {
     const favourite = await new Favourite({
-      products,
+      product,
       userId,
     }).save()
     res.status(200).json(favourite)
@@ -277,18 +277,6 @@ app.post('/favourites', async (req, res) => {
   }
 })
 
-//POST--> Add Product to favourite list
-
-/*app.post('users/:id/favourites', authenticateUser)
-app.post('/users/:id/favourites', async (req, res) => {
-  try {
-    const { name, price, designer, imageUrl} = req.body
-    const product = await Product.findOne({name})
-
-  } catch (error) {
-
-  }
-})*/
 
 // Start the server
 app.listen(port, () => {
