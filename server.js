@@ -285,12 +285,31 @@ app.post('/users/user/favourites', async (req, res) => {
       { _id: userId },
       { $push: { favourites: favourite._id } }
     )
+
     res.status(200).json(favourite)
   } catch (error) {
     res.status(400).json({ error: 'Could not save favourite. Please try again'})
   }
 })
 
+app.delete('/users/user/favourites/:id', authenticateUser)
+app.delete('/users/user/favourites/:id', async (req, res) => {
+  const { product } = req.body
+  const { userId } = req.params
+  try {
+    const favourite = Favourite.findById(userId)
+    await Favourite.deleteOne({ _id: product._id })
+    await User.findOneAndUpdate(
+      { _id: userId },
+      { $pull: { favourites: favourite._id } }
+    )
+
+    res.status(200).json({ success: true })
+  } catch (error) {
+    console.log(error)
+    res.status(400).json({ success: false, error: error })
+  }
+})
 
 // Start the server
 app.listen(port, () => {
