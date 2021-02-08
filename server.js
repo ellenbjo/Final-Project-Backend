@@ -11,6 +11,7 @@ import designersData from './data/designers.json'
 import Product from './models/product'
 import Designer from './models/designer'
 import Order from './models/order'
+import Favourite from './models/favourite'
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalproject"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -59,6 +60,7 @@ const userSchema = new mongoose.Schema({
       ref: 'order'
     }
   ],
+  favourites: [],
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex'),
@@ -183,6 +185,13 @@ app.get('/users/orders', async (req, res) => {
   res.status(200).json(userOrders)
 })
 
+app.get('/users/favourites', authenticateUser)
+app.get('/users/favourites', async (req, res) => {
+  const userFavourites = await Favourite.find({ 
+    userId: req.user._id
+  })
+  res.status(200).json(userFavourites)
+})
 
 //------------- Products ---------------
 //all products
@@ -213,7 +222,7 @@ app.get('/designers', async (req, res) => {
   res.status(200).json(allDesigners)
 })
 
-//single deisgner. not sure if this is needed in frontend
+//single designer. not used in frontend
 app.get('/designers/:id', async (req, res) => {
   const { id } = req.params
   const designer = await Designer.findOne({ _id: id})
@@ -239,8 +248,6 @@ app.get('/designers/:id/products', async (req, res) => {
     }
 })
 
-// POST--> Add Item/Product to cart
-//What info should I send? Should it be connected with the product model in some way?
 
 app.post('/orders', authenticateUser)
 app.post('/orders', async (req, res) => {
@@ -253,6 +260,20 @@ app.post('/orders', async (req, res) => {
     res.status(200).json(order)
   } catch (error) {
     res.status(400).json({ error: 'Could not save order. Please try again'})
+  }
+})
+
+app.post('/favourites', authenticateUser)
+app.post('/favourites', async (req, res) => {
+  const { products, userId } = req.body
+  try {
+    const favourite = await new Favourite({
+      products,
+      userId,
+    }).save()
+    res.status(200).json(favourite)
+  } catch (error) {
+    res.status(400).json({ error: 'Could not save favourite. Please try again'})
   }
 })
 
