@@ -190,13 +190,13 @@ app.get('/users/user/orders', async (req, res) => {
   res.status(200).json(userOrders)
 })
 
-app.get('/users/user/favourites', authenticateUser)
+/*app.get('/users/user/favourites', authenticateUser)
 app.get('/users/user/favourites', async (req, res) => {
   const userFavourites = await Favourite.find({ 
     userId: req.user._id
   })
   res.status(200).json(userFavourites)
-})
+})*/
 
 //------------- Products ---------------
 //all products
@@ -272,7 +272,7 @@ app.post('/users/user/orders', async (req, res) => {
   }
 })
 
-app.patch('/users/user/favourites', authenticateUser)
+/*app.patch('/users/user/favourites', authenticateUser)
 app.patch('/users/user/favourites', async (req, res) => {
   const { product, userId } = req.body
   try {
@@ -290,9 +290,9 @@ app.patch('/users/user/favourites', async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: 'Could not save favourite. Please try again'})
   }
-})
+}) */
 
-app.patch('/users/user/favourites/:id', authenticateUser)
+/*app.patch('/users/user/favourites/:id', authenticateUser)
 app.patch('/users/user/favourites/:id', async (req, res) => {
   const { userId } = req.body
   const { id } = req.params
@@ -301,15 +301,14 @@ app.patch('/users/user/favourites/:id', async (req, res) => {
     await Favourite.deleteOne({ _id: id })
     await User.findOneAndUpdate(
       { _id: userId },
-      { $pull: { favourites: { _id: id } } }
+      { $pull: { favourites: id } }
     )
-
     res.status(200).json({ success: true })
   } catch (error) {
     console.log(error)
     res.status(400).json({ success: false, error: error })
   }
-})
+}) */
 
 // Start the server
 app.listen(port, () => {
