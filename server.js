@@ -57,10 +57,15 @@ const userSchema = new mongoose.Schema({
   orders: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'order'
+      ref: 'Order'
     }
   ],
-  favourites: [],
+  favourites: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Favourite'
+    }
+  ],
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex'),
