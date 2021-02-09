@@ -210,16 +210,7 @@ app.get('/products/:id', async (req, res) => {
   const { id } = req.params
   try {
     const singleProduct = await Product.findOne({ _id: id})
-    const response = {
-      name: singleProduct.name,
-      price: singleProduct.price,
-      dimensions: singleProduct.dimensions,
-      designer: singleProduct.designer,
-      designerId: singleProduct.designer._id,
-      category: singleProduct.category,
-      imageUrl: singleProduct.imageUrl,
-      designerName: singleProduct.designer.designer.name
-    }
+    
     if (singleProduct) {
       res.status(200).json(response)
     } else {
