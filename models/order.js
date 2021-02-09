@@ -15,6 +15,7 @@ const Order = new mongoose.model('Order', {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'
       },
+      name: String,
       quantity: Number,
     }
   ],
