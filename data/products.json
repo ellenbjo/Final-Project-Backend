@@ -11,7 +11,7 @@
     "name": "Gorgeous Coffee cup",
     "price": 300,
     "dimensions": "10 cm high, 10 cm wide",
-    "designer": "Nelle Namkröjb",
+    "designer": "Anna Andersson",
     "category": "Cups",
     "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611154464/products/pexels-karolina-grabowska-4466255_onjtzb.jpg"
   },
@@ -51,7 +51,7 @@
     "name": "Arty Vase",
     "price": 800,
     "dimensions": "32 cm high, 20 cm wide",
-    "designer": "Name Nameson",
+    "designer": "Johan Johansson",
     "category": "Vases",
     "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611155887/products/pexels-cottonbro-4277097_wig5hy.jpg"
   },
@@ -59,7 +59,7 @@
     "name": "Pretty Vase",
     "price": 450,
     "dimensions": "32 cm high, 20 cm wide",
-    "designer": "Nelle Namkröjb",
+    "designer": "Anna Andersson",
     "category": "Vases",
     "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611155609/products/pexels-karolina-grabowska-4207475_1_pdtmw1.jpg"
   },
@@ -67,7 +67,7 @@
     "name": "Dark Vase",
     "price": 470,
     "dimensions": "32 cm high, 20 cm wide",
-    "designer": "Name Nameson",
+    "designer": "Johan Johansson",
     "category": "Vases",
     "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1612447011/products/pexels-cottonbro-4277099_vbxbbe.jpg"
   },
@@ -107,7 +107,7 @@
     "name": "Modern Vase",
     "price": 300,
     "dimensions": "32 cm high, 20 cm wide",
-    "designer": "Designer Name",
+    "designer": "Anna Andersson",
     "category": "Vases",
     "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1611222175/products/pexels-gabby-k-5273720_ozbtua.jpg"
   }, 
@@ -123,7 +123,7 @@
     "name": "Clumsy Vase",
     "price": 700,
     "dimensions": "32 cm high, 20 cm wide",
-    "designer": "Name Nameson",
+    "designer": "Johan Johansson",
     "category": "Vases",
     "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1612278091/products/pexels-elika-margaretha-4898516_xuavth.jpg"
   },
@@ -131,7 +131,7 @@
     "name": "Nature Vase",
     "price": 800,
     "dimensions": "32 cm high, 20 cm wide",
-    "designer": "Name Nameson",
+    "designer": "Johan Johansson",
     "category": "Vases",
     "imageUrl": "https://res.cloudinary.com/dztqyanvb/image/upload/v1612362416/products/pexels-elika-margaretha-4898515_h2vdsa.jpg"
   }
