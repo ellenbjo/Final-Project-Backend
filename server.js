@@ -210,9 +210,9 @@ app.get('/products/:id', async (req, res) => {
   const { id } = req.params
   try {
     const singleProduct = await Product.findOne({ _id: id})
-    
+
     if (singleProduct) {
-      res.status(200).json(response)
+      res.status(200).json(singleProduct)
     } else {
       res.status(400).json({ error: 'No such product found'})
     }
