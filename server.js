@@ -214,7 +214,7 @@ app.get('/products/:id', async (req, res) => {
       name: singleProduct.name,
       price: singleProduct.price,
       dimensions: singleProduct.dimensions,
-      designer: singleProduct.designer,
+      designer: singleProduct.designer._id,
       designerName: singleProduct.designer.name,
       category: singleProduct.category,
       imageUrl: singleProduct.imageUrl,
