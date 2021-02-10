@@ -246,12 +246,21 @@ app.get('/designers/:id', async (req, res) => {
 //all products from one designer
 app.get('/designers/:id/products', async (req, res) => {
     const designer = await Designer.findById(req.params.id)
-    console.log(designer)
+
     if (designer) {
       const products = await Product.find({
         designer: mongoose.Types.ObjectId(designer.id)
-      })
-      res.json(products)
+      }).populate('designer')
+      const response = {
+        name: singleProduct.name,
+        price: singleProduct.price,
+        dimensions: singleProduct.dimensions,
+        designer: singleProduct.designer,
+        designerName: singleProduct.designer.name,
+        category: singleProduct.category,
+        imageUrl: singleProduct.imageUrl
+      }
+      res.json(response)
     } else {
       res.status(400).json({ error: 'Products from designer could not be found'})
     }
