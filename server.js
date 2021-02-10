@@ -250,7 +250,7 @@ app.get('/designers/:id/products', async (req, res) => {
     if (designer) {
       const products = await Product.find({
         designer: mongoose.Types.ObjectId(designer.id)
-      }).populate('designer')
+      })
       res.json(products)
     } else {
       res.status(400).json({ error: 'Products from designer could not be found'})
