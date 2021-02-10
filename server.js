@@ -11,7 +11,6 @@ import designersData from './data/designers.json'
 import Product from './models/product'
 import Designer from './models/designer'
 import Order from './models/order'
-import Favourite from './models/favourite'
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/finalproject"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -56,12 +55,6 @@ const userSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Order'
-    }
-  ],
-  favourites: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Favourite'
     }
   ],
   accessToken: {
@@ -185,16 +178,6 @@ app.get('/users/user/orders', async (req, res) => {
   res.status(200).json(userOrders)
 })
 
-app.get('/users/user/favourites', authenticateUser)
-app.get('/users/user/favourites', async (req, res) => {
-  
-  const user = await User.find({
-    userId: req.user._id
-  }).populate('favourites')
-    res.status(200).json({user})
-
-})
-
 //------------- Products ---------------
 //all products
 app.get('/products', async (req, res) => {
@@ -278,44 +261,6 @@ app.post('/users/user/orders', async (req, res) => {
     res.status(400).json({ error: 'Could not save order. Please try again'})
   }
 })
-
-app.patch('/users/user/favourites', authenticateUser)
-app.patch('/users/user/favourites', async (req, res) => {
-  const { product, userId } = req.body
-  try {
-    const favourite = await new Favourite({
-      product,
-      userId,
-    }).save()
-
-    await User.findOneAndUpdate(
-      { _id: userId },
-      { $push: { favourites: favourite._id } }
-    )
-
-    res.status(200).json(favourite)
-  } catch (error) {
-    res.status(400).json({ error: 'Could not save favourite. Please try again'})
-  }
-}) 
-
-/*app.patch('/users/user/favourites/:id', authenticateUser)
-app.patch('/users/user/favourites/:id', async (req, res) => {
-  const { userId } = req.body
-  const { id } = req.params
-  try {
-    const favourite = Favourite.findById(id)
-    await Favourite.deleteOne({ _id: id })
-    await User.findOneAndUpdate(
-      { _id: userId },
-      { $pull: { favourites: id } }
-    )
-    res.status(200).json({ success: true })
-  } catch (error) {
-    console.log(error)
-    res.status(400).json({ success: false, error: error })
-  }
-}) */
 
 // Start the server
 app.listen(port, () => {
