@@ -187,11 +187,12 @@ app.get('/users/user/orders', async (req, res) => {
 
 app.get('/users/user/favourites', authenticateUser)
 app.get('/users/user/favourites', async (req, res) => {
-  const favourites = await Favourite.find({ 
+  
+  const user = await User.find({
     userId: req.user._id
-  }).populate('favourite')
+  }).populate('favourites')
+    res.status(200).json({user})
 
-  res.status(200).json(favourites)
 })
 
 //------------- Products ---------------
