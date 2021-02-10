@@ -251,16 +251,7 @@ app.get('/designers/:id/products', async (req, res) => {
       const products = await Product.find({
         designer: mongoose.Types.ObjectId(designer.id)
       }).populate('designer')
-      const response = {
-        name: singleProduct.name,
-        price: singleProduct.price,
-        dimensions: singleProduct.dimensions,
-        designer: singleProduct.designer,
-        designerName: singleProduct.designer.name,
-        category: singleProduct.category,
-        imageUrl: singleProduct.imageUrl
-      }
-      res.json(response)
+      res.json(products)
     } else {
       res.status(400).json({ error: 'Products from designer could not be found'})
     }
