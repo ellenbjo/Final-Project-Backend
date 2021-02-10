@@ -20,8 +20,6 @@ mongoose.Promise = Promise
 const port = process.env.PORT || 8081
 const app = express()
 
-//move this model to a seperate folder
-//how to import when schema and model is seperate?
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -74,8 +72,6 @@ const userSchema = new mongoose.Schema({
 })
 
 // mongoose pre-hook executes "this" right before the specified action (param-->save) is executed 
-//week 20 lecture 2, 19 minutes in.
-//salt adds som variation to the hash function, per user 
 userSchema.pre('save', async function(next){
   const user = this
 
@@ -106,7 +102,6 @@ const authenticateUser = async (req, res, next) => {
   }
 }
 
-// Add middlewares to enable cors and json body parsing
 app.use(cors())
 app.use(bodyParser.json())
 
@@ -209,10 +204,18 @@ app.get('/products', async (req, res) => {
 app.get('/products/:id', async (req, res) => {
   const { id } = req.params
   try {
-    const singleProduct = await Product.findOne({ _id: id})
-
+    const singleProduct = await Product.findOne({ _id: id}).populate('designer')
+    const response = {
+      name: singleProduct.name,
+      price: singleProduct.price,
+      dimensions: singleProduct.dimensions,
+      designer: singleProduct.designer,
+      designerName: singleProduct.designer.name,
+      category: singleProduct.category,
+      imageUrl: singleProduct.imageUrl
+    }
     if (singleProduct) {
-      res.status(200).json(singleProduct)
+      res.status(200).json(response)
     } else {
       res.status(400).json({ error: 'No such product found'})
     }
