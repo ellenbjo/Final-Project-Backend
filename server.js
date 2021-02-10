@@ -190,10 +190,8 @@ app.get('/users/user/favourites', async (req, res) => {
   const user = await User.find({ 
     userId: req.user._id
   }).populate('favourite')
-  const userFavourites = {
-    favourites: user.favourites
-  }
-  res.status(200).json(userFavourites)
+
+  res.status(200).json(user)
 })
 
 //------------- Products ---------------
