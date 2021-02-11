@@ -191,6 +191,7 @@ app.get('/products/:id', async (req, res) => {
   try {
     const singleProduct = await Product.findOne({ _id: id}).populate('designer')
     const response = {
+      _id: singleProduct._id,
       name: singleProduct.name,
       price: singleProduct.price,
       dimensions: singleProduct.dimensions,
