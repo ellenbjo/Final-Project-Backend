@@ -241,7 +241,7 @@ app.get('/users/user/orders', authenticateUser)
 app.get('/users/user/orders', async (req, res) => {
   const userOrders = await Order.find({ 
     userId: req.user._id
-  }).populate('productId')
+  })
   res.status(200).json(userOrders)
 })
 
