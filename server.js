@@ -169,14 +169,6 @@ app.post('/sessions', async (req, res) => {
   }
 })
 
-//profile
-app.get('/users/user/orders', authenticateUser)
-app.get('/users/user/orders', async (req, res) => {
-  const userOrders = await Order.find({ 
-    userId: req.user._id
-  })
-  res.status(200).json(userOrders)
-})
 
 //------------- Products ---------------
 //all products
@@ -244,6 +236,14 @@ app.get('/designers/:id/products', async (req, res) => {
     }
 })
 
+//orders
+app.get('/users/user/orders', authenticateUser)
+app.get('/users/user/orders', async (req, res) => {
+  const userOrders = await Order.find({ 
+    userId: req.user._id
+  }).populate('productId')
+  res.status(200).json(userOrders)
+})
 
 app.post('/users/user/orders', authenticateUser)
 app.post('/users/user/orders', async (req, res) => {
