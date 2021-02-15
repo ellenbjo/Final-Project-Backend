@@ -57,12 +57,6 @@ const userSchema = new mongoose.Schema({
       ref: 'Order'
     }
   ],
-  favourites: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Product'
-    }
-  ],
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex'),
@@ -269,40 +263,6 @@ app.post('/users/user/orders', async (req, res) => {
   }
 })
 
-//------ favourites -----
-
-app.put('/users/:id/favourites', authenticateUser)
-app.put('/users/:id/favourites', async (req, res) => {
-  try {
-    const productId = req.body
-    const userId = req.params.id
-    const favourite = await Product.findById(productId)
-    await User.findOneAndUpdate(
-      {_id: userId},
-      {$push: {favourites: favourite}}
-    )
-    res.status(200).json(favourite)
-  } catch (error) {
-    res.status(404).json({
-      error: 'Could not add favourite. Please log in to continue.'
-    })
-  }
-})
-
-app.get('/users/:id/favourites', authenticateUser)
-app.get('/users/:id/favourites', async (req, res) => {
-  try{
-    const userId = req.params.id
-    if (userId != req.user.id){
-      throw 'You do not have access. User have to be loged in to continue.'
-    }
-    const userFavourites = await req.user.favourites
-    const favouriteProducts = await Product.find({ _id: userFavourites }).populate('Designer')
-    res.status(200).json(favouriteProducts)
-  } catch (error) {
-    res.status(400).json({ error: 'Favourites for user could not be found.'})
-  }
-})
 
 // Start the server
 app.listen(port, () => {
