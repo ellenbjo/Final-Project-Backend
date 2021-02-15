@@ -239,12 +239,10 @@ app.get('/designers/:id/products', async (req, res) => {
 //------------- Orders ---------------------
 app.get('/users/user/orders', authenticateUser)
 app.get('/users/user/orders', async (req, res) => {
-  /*const userOrders = await Order.find({ 
+  const userOrders = await Order.find({ 
     userId: req.user._id
-  })*/
-  const userOrders = await req.user.orders
-  const userOrderHistory = await Order.find({ _id: userOrders })
-  res.status(200).json(userOrderHistory)
+  })
+  res.status(200).json(userOrders)
 })
 
 app.post('/users/user/orders', authenticateUser)
