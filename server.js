@@ -57,6 +57,12 @@ const userSchema = new mongoose.Schema({
       ref: 'Order'
     }
   ],
+  favourites: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Product'
+    }
+  ],
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex'),
@@ -236,7 +242,7 @@ app.get('/designers/:id/products', async (req, res) => {
     }
 })
 
-//orders
+//------------- Orders ---------------------
 app.get('/users/user/orders', authenticateUser)
 app.get('/users/user/orders', async (req, res) => {
   const userOrders = await Order.find({ 
@@ -260,6 +266,38 @@ app.post('/users/user/orders', async (req, res) => {
     res.status(200).json(order)
   } catch (error) {
     res.status(400).json({ error: 'Could not save order. Please try again'})
+  }
+})
+
+//------ favourites -----
+
+app.put('/users/user/favourites', authenticateUser)
+app.put('users/user/favourites', async (req, res) => {
+  try {
+    productId = req.body
+    const favourite = await Product.findById(productId)
+    const userId = req.user._id
+    await User.updateOne(
+      {_id: userId},
+      {$push: {favourites: favourite}}
+    )
+    res.status(200).json(favourite)
+  } catch (error) {
+    res.status(404).json({
+      error: 'Could not add favourite. Please log in to continue.'
+    })
+  }
+})
+
+app.get('users/user/favourites', authenticateUser)
+app.get('users/user/favourites', async (req, res) => {
+  try{
+    const user = req.user
+    const userFavourites = await user.favourites
+    const favouriteProducts = await Product.find({ _id: userFavourites }).populate('Designer')
+    res.status(200).json(favouriteProducts)
+  } catch (error) {
+    res.status(400).json({ error: 'Favourites for user could not be found.'})
   }
 })
 
