@@ -271,12 +271,12 @@ app.post('/users/user/orders', async (req, res) => {
 
 //------ favourites -----
 
-app.put('/users/user/favourites', authenticateUser)
-app.put('/users/user/favourites', async (req, res) => {
+app.put('/users/:id/favourites', authenticateUser)
+app.put('/users/:id/favourites', async (req, res) => {
   try {
     const productId = req.body
+    const userId = req.params.id
     const favourite = await Product.findById(productId)
-    const userId = req.user._id
     await User.findOneAndUpdate(
       {_id: userId},
       {$push: {favourites: favourite}}
@@ -289,11 +289,14 @@ app.put('/users/user/favourites', async (req, res) => {
   }
 })
 
-app.get('users/user/favourites', authenticateUser)
-app.get('users/user/favourites', async (req, res) => {
+app.get('users/:id/favourites', authenticateUser)
+app.get('users/:id/favourites', async (req, res) => {
   try{
-    const user = req.user
-    const userFavourites = await user.favourites
+    const userId = req.params.id
+    if (userId != req.user.id){
+      throw 'You do not have access. User have to be loged in to continue.'
+    }
+    const userFavourites = await req.user.favourites
     const favouriteProducts = await Product.find({ _id: userFavourites }).populate('Designer')
     res.status(200).json(favouriteProducts)
   } catch (error) {
