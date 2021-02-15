@@ -272,7 +272,7 @@ app.post('/users/user/orders', async (req, res) => {
 //------ favourites -----
 
 app.put('/users/user/favourites', authenticateUser)
-app.put('users/user/favourites', async (req, res) => {
+app.put('/users/user/favourites', async (req, res) => {
   try {
     productId = req.body
     const favourite = await Product.findById(productId)
