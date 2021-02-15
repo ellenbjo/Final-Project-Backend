@@ -274,10 +274,10 @@ app.post('/users/user/orders', async (req, res) => {
 app.put('/users/user/favourites', authenticateUser)
 app.put('/users/user/favourites', async (req, res) => {
   try {
-    productId = req.body
+    const productId = req.body
     const favourite = await Product.findById(productId)
     const userId = req.user._id
-    await User.updateOne(
+    await User.findOneAndUpdate(
       {_id: userId},
       {$push: {favourites: favourite}}
     )
