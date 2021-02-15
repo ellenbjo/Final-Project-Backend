@@ -289,8 +289,8 @@ app.put('/users/:id/favourites', async (req, res) => {
   }
 })
 
-app.get('users/:id/favourites', authenticateUser)
-app.get('users/:id/favourites', async (req, res) => {
+app.get('/users/:id/favourites', authenticateUser)
+app.get('/users/:id/favourites', async (req, res) => {
   try{
     const userId = req.params.id
     if (userId != req.user.id){
