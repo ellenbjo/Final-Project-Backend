@@ -226,7 +226,6 @@ app.get('/designers/:id', async (req, res) => {
 app.get('/designers/:id/products', async (req, res) => {
   const { id } = req.params
   const designer = await Designer.findById({ _id: id })
-
   if (designer) {
     const products = await Product.find({
       designer: mongoose.Types.ObjectId(designer.id)
